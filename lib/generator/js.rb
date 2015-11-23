@@ -208,7 +208,7 @@ module HQMF2JS
         hqmfjs.nqf_id = '#{@doc.id}';
         hqmfjs.hqmf_id = '#{@doc.hqmf_id}';
         hqmfjs.sub_id = #{sub_id};
-        if (typeof(test_id) == 'undefined') hqmfjs.test_id = null;
+        if (typeof(correlation_id) == 'undefined') hqmfjs.correlation_id = null;
 
         OidDictionary = #{oid_dictionary};
         
