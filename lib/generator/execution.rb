@@ -14,29 +14,8 @@ module HQMF2JS
 
       # Note that the JS returned by this function is not included when using the in-browser
       # debugger. See app/views/measures/debug.js.erb for the in-browser equivalent.
-      def self.measure_js(hqmf_document, population_index, options)
-        "function() {
-          var patient = this;
-          var effective_date = <%= effective_date %>;
-          var enable_logging = <%= enable_logging %>;
-          var enable_rationale = <%= enable_rationale %>;
-          var short_circuit = <%= short_circuit %>;
-
-        <% if (!test_id.nil? && test_id.class==Moped::BSON::ObjectId) %>
-          var test_id = new ObjectId(\"<%= test_id %>\");
-        <% else %>
-          var test_id = null;
-        <% end %>
-
-          hqmfjs = {}
-          <%= init_js_frameworks %>
-
-          hqmfjs.effective_date = effective_date;
-          hqmfjs.test_id = test_id;
-      
-          #{logic(hqmf_document, population_index, options)}
-        };
-        "
+      def self.measure_js(hqmf_document, population_index, options) 
+        logic(hqmf_document, population_index, options)
       end
 
 
@@ -60,6 +39,14 @@ module HQMF2JS
 
         
         "
+        var effective_date = <%= effective_date %>;
+        var enable_logging = <%= enable_logging %>;
+        var enable_rationale = <%= enable_rationale %>;
+        var short_circuit = <%= short_circuit %>;
+
+        hqmfjs.effective_date = effective_date;
+        hqmfjs.correlation_id = correlation_id;
+
         var patient_api = new hQuery.Patient(patient);
 
         #{gen.to_js(population_index, codes, force_sources)}
