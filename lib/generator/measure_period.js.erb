@@ -11,9 +11,14 @@ hqmfjs.MeasurePeriod = function(patient) {
     }
   )];
 }
-if (typeof effective_date === 'number') {
-  MeasurePeriod.high.date = new Date(1000*effective_date);
-  // add one minute before pulling off the year.  This turns 12-31-2012 23:59 into 1-1-2013 00:00 => 1-1-2012 00:00
-  MeasurePeriod.low.date = new Date(1000*(effective_date+60));
-  MeasurePeriod.low.date.setFullYear(MeasurePeriod.low.date.getFullYear()-1);
+
+hqmfjs.setEffectiveDate = function(effective_date){
+  if (typeof effective_date === 'number') {
+    hqmfjs.effective_date = effective_date
+    MeasurePeriod.high.date = new Date(1000*effective_date);
+    // add one minute before pulling off the year.  This turns 12-31-2012 23:59 into 1-1-2013 00:00 => 1-1-2012 00:00
+    MeasurePeriod.low.date = new Date(1000*(effective_date+60));
+    MeasurePeriod.low.date.setFullYear(MeasurePeriod.low.date.getFullYear()-1);
+  }
+  return true;
 }

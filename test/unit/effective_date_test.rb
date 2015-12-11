@@ -20,7 +20,8 @@ class EffectiveDateTest < Minitest::Test
       #{@converter.js_for('DENOM')}
       #{@converter.js_for('NUMER')}
       #{@converter.js_for('DENEXCEP')}
-      #{@converter.js_for('DUMMY')}"
+      #{@converter.js_for('DUMMY')}
+      hqmfjs.setEffectiveDate(effective_date);"
 
     # Now we can wrap and compile all of our code as one little JavaScript context for all of the tests below
     if RUBY_PLATFORM=='java'

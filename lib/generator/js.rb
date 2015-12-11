@@ -210,7 +210,7 @@ module HQMF2JS
         hqmfjs.sub_id = #{sub_id};
         if (typeof(correlation_id) == 'undefined') hqmfjs.correlation_id = null;
 
-        OidDictionary = #{oid_dictionary};
+        hqmfjs.OidDictionary = #{oid_dictionary};
         
         #{js_for_data_criteria(force_sources)}
 
