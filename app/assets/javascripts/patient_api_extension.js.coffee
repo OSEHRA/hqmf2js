@@ -1,3 +1,6 @@
+hQuery.Patient::id = -> this.json["_id"]
+hQuery.Patient::medicalRecordNumber = -> this.json["medical_record_number"]
+
 hQuery.Patient::procedureResults = -> this.results().concat(this.vitalSigns()).concat(this.procedures())
 hQuery.Patient::allProcedures = -> this.procedures().concat(this.immunizations()).concat(this.medications())
 hQuery.Patient::laboratoryTests = -> this.results().concat(this.vitalSigns())

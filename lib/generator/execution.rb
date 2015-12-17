@@ -61,7 +61,7 @@ module HQMF2JS
 
         var executeIfAvailable = function(optionalFunction, patient_api) {
           if (typeof(optionalFunction)==='function') {
-            result = optionalFunction(patient_api);
+            var result = optionalFunction(patient_api);
             #{crosswalk_check}
             return result;
           } else {

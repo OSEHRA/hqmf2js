@@ -23,7 +23,7 @@
   events.specificContext=events.specificContext||hqmf.SpecificsManager.identity();
   return events;
 <%- elsif criteria.property == :clinicalTrialParticipant -%>
-  matching = matchingValue(value, 'true');
+  var matching = matchingValue(value, 'true');
   matching.specificContext=hqmf.SpecificsManager.identity();
   return matching;
 <%- elsif criteria.property == :race || criteria.property == :payer -%>
@@ -35,7 +35,7 @@
   matching.specificContext=hqmf.SpecificsManager.identity();
   return matching;
 <%- else -%>
-  matching = matchingValue(value, <%= js_for_bounds(criteria.value) %>);
+  var matching = matchingValue(value, <%= js_for_bounds(criteria.value) %>);
   matching.specificContext=hqmf.SpecificsManager.identity();
   return matching;
 <%- end -%>
