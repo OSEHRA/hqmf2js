@@ -307,6 +307,8 @@ module HQMF2JS
                       ctx.find_asset('patient_api_extension').to_s,
                       "// #########################\n// ## CUSTOM CALCULATIONS ###\n// #########################\n",
                       ctx.find_asset('custom_calculations').to_s,
+                      "// #########################\n// ## SPECIFICS RATIONALE GENERATOR ###\n// #########################\n",
+                      ctx.find_asset('specifics_rationale_generator').to_s,
                       "// #########################\n// ##### LOGGING UTILS ######\n// #########################\n",
                       ctx.find_asset('logging_utils').to_s]
 
