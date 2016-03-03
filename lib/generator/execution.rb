@@ -53,11 +53,6 @@ module HQMF2JS
 
 
 
-        var variables = function() {
-          if (Logger.enable_rationale) {
-            return executeIfAvailable(hqmfjs.VARIABLES, patient_api);
-          }
-        }
 
         var executeIfAvailable = function(optionalFunction, patient_api) {
           if (typeof(optionalFunction)==='function') {
@@ -117,6 +112,12 @@ module HQMF2JS
             #{observation_function(custom_functions, population_index)}
           }
 
+
+          var variables = function() {
+            if (Logger.enable_rationale) {
+              return executeIfAvailable(hqmfjs.VARIABLES, patient_api);
+            }
+          }
           OidDictionary = hqmfjs.OidDictionary;
           hqmfjs.initializeSpecifics(patient_api, hqmfjs);
           hqmfjs.setEffectiveDate(effective_date);

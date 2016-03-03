@@ -26,7 +26,7 @@ hqmfjs.<%= js_name(criteria) %> = function(patient, initialSpecificContext) {
   events = <%= field_library_method(field, criteria.field_values[field]) %>(events, "<%= field_method(field) %>", <%= js_for_bounds(criteria.field_values[field]) %>);
       <%- end -%>
       <%- if criteria.subset_operators -%>
-  fields = <%= criteria.field_values.keys.map {|field| field_method(field)} %>;
+  var fields = <%= criteria.field_values.keys.map {|field| field_method(field)} %>;
       <%- end -%>
     <%- end -%>
     <%- if ['transfer_from','transfer_to'].include?(criteria.definition) -%>
