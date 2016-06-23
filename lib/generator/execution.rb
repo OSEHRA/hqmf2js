@@ -57,8 +57,7 @@ module HQMF2JS
           crosswalk_check = "result = hqmf.SpecificsManager.maintainSpecifics(new Boolean(result.isTrue() && patient_api.validateCodeSystems()), result);"
           crosswalk_instrument = "instrumentTrueCrosswalk(hqmfjs);"
         end
-
-
+        
         "
         var patient_api = new hQuery.Patient(patient);
 
@@ -72,10 +71,12 @@ module HQMF2JS
           return executeIfAvailable(hqmfjs.#{HQMF::PopulationCriteria::IPP}, patient_api);
         }
         var stratification = null;
+        var isEpisodeInStrat = false;
         if (hqmfjs.#{HQMF::PopulationCriteria::STRAT}) {
           stratification = function() {
             return hqmf.SpecificsManager.setIfNull(executeIfAvailable(hqmfjs.#{HQMF::PopulationCriteria::STRAT}, patient_api));
           }
+          isEpisodeInStrat = #{is_episode_in_strat(episode_ids, hqmf_document, population_index)};
         }
         var denominator = function() {
           return executeIfAvailable(hqmfjs.#{HQMF::PopulationCriteria::DENOM}, patient_api);
@@ -135,13 +136,23 @@ module HQMF2JS
         }
 
         try {
-          map(patient, population, denominator, numerator, exclusion, denexcep, msrpopl, msrpoplex, observ, occurrenceId,#{continuous_variable},stratification, variables, numex);
+          map(patient, population, denominator, numerator, exclusion, denexcep, msrpopl, msrpoplex, observ, occurrenceId,#{continuous_variable},stratification, variables, numex, isEpisodeInStrat);
         } catch(err) {
           print(err.stack);
           throw err;
         }
 
         "
+      end
+
+      def self.is_episode_in_strat(episode_ids, hqmf_document, population_index)
+        if episode_ids && hqmf_document.populations[population_index]["STRAT"]
+          episode_ids.any? {|episode_id|
+            hqmf_document.is_criteria_in_population(episode_id, hqmf_document.populations[population_index]["STRAT"])
+          }
+        else
+          false
+        end
       end
 
       def self.observation_function(custom_functions, population_index)
