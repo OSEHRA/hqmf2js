@@ -1,5 +1,11 @@
 This project is a library that will convert a declarative HQMF measure description into executable JavaScript suitable for use within the hQuery Gateway.
 
+Fork popHealth-c4
+-----------------
+This fork is an update for compability with https://github.com/projectcypress/health-data-standards mongoid5 branch. 
+Possible Breaking Change: health-data-standards version.
+Non-breaking Change: Moped::BSON::ObjectId ==> BSON::ObjectId
+
 
 Project Practices
 =================

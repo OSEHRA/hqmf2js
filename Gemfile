@@ -9,13 +9,14 @@ end
 
 gem 'hquery-patient-api', :git => 'https://github.com/projecttacoma/patientapi.git', :branch => 'master'
 #gem 'hquery-patient-api', :path => '../patientapi'
-gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'master'
+#gem 'health-data-standards', :git => 'https://github.com/projectcypress/health-data-standards.git', :branch => 'master'
 #gem 'health-data-standards', :path => '../health-data-standards'
+gem 'health-data-standards', git: 'https://github.com/projectcypress/health-data-standards.git', branch: 'mongoid5'
 
-gem 'nokogiri'
+gem 'nokogiri', '~> 1.6.8'
 gem 'sprockets'
 gem 'coffee-script'
-gem 'uglifier'
+gem 'uglifier', '~> 1.3.0'
 gem 'tilt'
 gem 'rake'
 gem 'pry'
